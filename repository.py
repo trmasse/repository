@@ -1,6 +1,6 @@
 #Data Structure Repository
 
-#Node
+#Node (4/30/2020)
 class Node:
     def __init__(self, value, link_node = None):
         self.value = value
@@ -15,7 +15,7 @@ class Node:
     def set_link_node(self, new_link):
         self.link_node = new_link
 
-#Linked List
+#Linked List (4/30/2020)
 class LinkedList:
     def __init__(self, head_node = None):
         self.head_node = head_node
@@ -41,7 +41,7 @@ class LinkedList:
             yield current_node.get_value()
             current_node = current_node.get_link_node()
             
-#Hash Map with Separate Chaining
+#Hash Map with Separate Chaining (4/30/2020)
 class HashMap:
   def __init__(self, size):
     self.array_size = size
@@ -69,6 +69,25 @@ class HashMap:
       if item[0] == key:
         return item[1]
     return None
+    
+#Tree (4/30/2020)
+class TreeNode:
+    def __init__(self, value):
+        self.value = value
+        self.children = []
+        
+    def add_child(self, child_node):
+        self.children.append(child_node)
+        
+    def remove_child(self, child_node):
+        self.children = [child for child in self.children if child != child_node]
+        
+    def traverse(self):
+        nodes_to_visit = [self]
+        while len(nodes_to_visit) > 0:
+            current_node = nodes_to_visit.pop()
+            print(current_node.value)
+            nodes_to_visit += current_node.children
             
             
     
