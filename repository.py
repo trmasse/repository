@@ -241,7 +241,7 @@ def merge(left, right):
         
     return result
         
-#Quicksort (alters original list) (5/7/2020)
+#Quicksort (in-place implementation) (5/7/2020)
 from random import randrange
 
 def quicksort(list, start, end):
@@ -263,6 +263,34 @@ def quicksort(list, start, end):
     
     quicksort(list, start, less_than_pointer - 1)
     quicksort(list, less_than_pointer + 1, end)
+    
+#RadixSort (least significant digit) (5/8/2020)
+def radix_sort(to_be_sorted):
+    maximum_value = max(to_be_sorted)
+    max_exponent = len(str(maximum_value))
+    being_sorted = to_be_sorted[:]
+    
+    for exponent in range(max_exponent):
+        position = exponent + 1
+        index = -position
+        
+        digits = [[] for i range(10)]
+        
+        for number in being_sorted:
+            number_as_a_string = str(number)
+            try:
+                digit = number_as_a_string[index]
+                digit = int(digit)
+            except IndexError:
+                digit = 0
+                
+            digits[digit].append(number)
+            
+        being_sorted = []
+        for numeral in digits:
+            being_sorted.extend(numeral)
+            
+    return being_sorted
     
             
     
