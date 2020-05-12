@@ -292,5 +292,66 @@ def radix_sort(to_be_sorted):
             
     return being_sorted
     
+#LinearSearch (5/12/2020)
+def linear_search(search_list, target):
+    for el in range(len(search_list)):
+        if search_list[el] == target:
+            return el
+    raise ValueError("{} not in list".format(target))
+    
+#LinearSearch check for multiple occurrences (5/12/2020)
+def linear_mult(search_list, target):
+    matches = []
+    for el in range(len(search_list)):
+        if search_list[el] == target:
+            matches.append(el)
+    if matches:
+        return matches
+    else:
+        raise ValueError("{} not in list".format(target))
+ 
+#BinarySearch (5/12/2020)
+def binary_search(sorted_list, target):
+    if not sorted_list:
+        return "value not found"
+    mid_idx = len(sorted_list) // 2
+    mid_val = sorted_list[mid_idx]
+    if mid_val == target:
+        return mid_idx
+    if mid_val > target:
+        left_half = sorted_list[0:mid_idx]
+        return binary_search(left_half, target)
+    if mid_val < target:
+        right_half = sorted_list[mid_idx+1:]
+        result = binary_search(right_half, target)
+        if result == "value not found":
+            return result
+        else:
+            return result + mid_idx + 1
+            
+#BinarySearch with pointers (better implementation) (5/12/2020)
+def binary_search2(sorted_list, left_pointer, right_pointer, target):
+    if left_pointer >= right_pointer:
+        return "value not found"
+        
+    mid_idx = (left_pointer + right_pointer) // 2
+    mid_val = sorted_list[mid_idx]
+    
+    if mid_val == target:
+        return mid_idx
+    if mid_val > target:
+        return binary_search2(sorted_list, left_pointer, mid_idx, target)
+    if mid_val < target:
+        return binary_search2(sorted_list, mid_idx + 1, right_pointer, target)
+    
+
+
+
+
+
+
+
+
+
             
     
