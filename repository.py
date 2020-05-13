@@ -343,6 +343,41 @@ def binary_search2(sorted_list, left_pointer, right_pointer, target):
         return binary_search2(sorted_list, left_pointer, mid_idx, target)
     if mid_val < target:
         return binary_search2(sorted_list, mid_idx + 1, right_pointer, target)
+        
+#Iterative BinarySearch (5/13/2020)
+#Works with sparsely sorted data (empty data between sorted values)
+def binary_search3(data, search_val):
+    #print("Data: " + str(data))
+    print("Search Value: " + str(search_val))
+    
+    first = 0
+    last = len(data) - 1
+    
+    while first <= last:
+        mid = (first + last) // 2
+        if not data[mid]:
+            left = mid-1
+            right = mid+1
+            while(True):
+                if (left < first) and (right > last):
+                    print ("{0} is not in the dataset".format(search_val))
+                    return
+                elif (right <= last) and (data[right]):
+                    mid = right
+                    break
+                elif (left >= first) and (data[left]):
+                    mid = left
+                    break
+                right += 1
+                left -= 1
+            if data[mid] == search_val:
+                print("{0} found at position {1}".format(search_val, mid))
+                return
+            if search_val < data[mid]:
+                last = mid - 1
+            if search_val > data[mid]:
+                first = mid + 1
+    print("{0} is not in the dataset".format(search_val))
     
 
 
